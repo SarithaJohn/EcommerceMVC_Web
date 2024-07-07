@@ -1,5 +1,35 @@
 ﻿@model List<Category>
 
+<style>
+    .bs-example {
+        margin: 20px;
+    }
+
+    .icon-input-btn {
+        display: inline-block;
+        position: relative;
+    }
+
+        .icon-input-btn input[type="submit"] {
+            padding-left: 2em;
+        }
+
+        .icon-input-btn .bi {
+            display: inline-block;
+            position: absolute;
+            left: 0.55em;
+            top: 20%;
+            color:white;
+            
+        }
+</style>
+@*<script>$(document).ready(function(){
+	$(".icon-input-btn").each(function(){
+        var btnFont = $(this).find(".btn").css("font-size");
+        var btnColor = $(this).find(".btn").css("color");
+      	$(this).find(".bi").css({'font-size': btnFont, 'color': btnColor});
+	});
+});</script>*@
 <div class="container">
     <div class="row pt-4 pb-3">
         <div class="col-6">
@@ -7,10 +37,23 @@
                 Category List
             </h2>
         </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle-fill me-1"></i>Create New Category
-            </a>
+        <div class="col-6">
+            <form asp-controller="Category" asp-action="SearchList">
+                <input name="searchString" type="text" />
+                <span class="icon-input-btn">
+                    <i class="bi bi-search"></i>
+                    <input type="submit" value="Search With Category" class="btn btn-primary" />
+                </span>
+                @*<a asp-controller="Category" asp-action="Search" class="btn btn-primary">
+                        <i class="bi bi-search"></i>&nbsp;Search With Category
+                    </a>*@
+
+
+
+                <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                    <i class="bi bi-plus-circle-fill me-1"></i>Create New Category
+                </a>
+            </form>
         </div>
     </div>
     <table class="table table-bordered table-striped">
@@ -22,7 +65,8 @@
                 <th>
                     Display Order
                 </th>
-
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -46,10 +90,22 @@
                     <td>
                         @obj.DisplayOrder
                     </td>
+                    <td>
+                        <div class="w-45 btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i>Edit
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="w-45 btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash3"></i>Delete
+                            </a>
+                        </div>
+                    </td>
                 </tr>
             }
-
-
         </tbody>
     </table>
 </div>

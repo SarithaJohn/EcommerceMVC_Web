@@ -19,11 +19,20 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.14" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Data\" />
     <None Remove="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Views\Category\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ecommerce.DataAccess\EcommerceWeb.DataAccess.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Ecommerce.Models\EcommerceWeb.Models.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Ecommerce.Utility\EcommerceWeb.Utility.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>
